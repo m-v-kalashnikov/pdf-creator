@@ -11,6 +11,8 @@ psycopg2-binary = "*"
 djangorestframework = "*"
 markdown = "*"
 django-filter = "*"
+googletrans = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.9"

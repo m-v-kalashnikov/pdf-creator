@@ -27,28 +27,15 @@ services:
     networks:
       - client-server-nginx
 
-  client:
-    container_name: client
-    build:
-      context: ./frontend
-    volumes:
-      - './frontend:/app/:ro'
-      - '/app/node_modules'
-    networks:
-      - client-server-nginx
-    depends_on:
-      - server
-    environment:
-      - NODE_ENV=development
-
   nginx:
     container_name: nginx
-    image: library/nginx:1.19.3-alpine
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
     ports:
       - '8000:80'
     depends_on:
       - server
-      - client
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - django-static:/code/staticfiles
